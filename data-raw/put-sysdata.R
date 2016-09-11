@@ -6,9 +6,26 @@ yearcd <-
 
 cities_coords <-
   list(MEL = c(143.8, 146.0, -38.5, -37.00),
-       SYD = c(150.05, 151.5, -34.5, -33.2),
+       SYD = c(150.35, 152.1, -34.5, -32.4),
        PER = c(115.3, 116.4, -32.3, -31.5),
        ADL = c(137.6, 139.25, -35.6, -34.28),
        BNE = c(152.4, 153.7, -28.2, -26.047))
 
-devtools::use_data(yearcd, cities_coords, internal = TRUE, overwrite = TRUE)
+cities_abbrev <-
+  list(MEL = "Melbourne",
+       SYD = "Greater Sydney",
+       PER = "Perth",
+       ADL = "Adelaide",
+       BNE = "Greater Brisbane")
+
+aus_extent <-
+  # lat longs of Australia.
+  list(xlim = c(113, 163),
+       ylim = c(-52, -5)) # lat = -9.8 -45 sufficient, but not for extra plots
+
+devtools::use_data(yearcd,
+                   cities_coords,
+                   cities_abbrev,
+                   aus_extent,
+                   #
+                   internal = TRUE, overwrite = TRUE)

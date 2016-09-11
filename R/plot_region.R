@@ -5,7 +5,7 @@
 #' @param coord_lines Plot grid lines at 0.1 intervals.
 #' @param scale_fill_manual_args A list of arguments to pass to \code{scale_fill_manual}.
 #' @param polygon_outline_colour The outline of polygons.
-#' @param inset_scale Scale relative to Australia.
+#' @param city_inset_scale Scale relative to Australia.
 #' @importFrom magrittr %>%
 #' @import data.table
 #' @return A list of three elements, \code{vwidth} the width of the inset on the device, \code{vheight} the height of the inset on the device, and \code{p} the plot.
@@ -16,7 +16,8 @@ plot_region <- function(.polygonal.data,
                         coord_lines = c("none", "latlon", "lat", "lon"),
                         scale_fill_manual_args = NULL,
                         polygon_outline_colour = "black",
-                        inset_scale = 15){
+                        city_inset_scale = 15,
+                        title = TRUE){
   city <- match.arg(city)
   coord_lines <- match.arg(coord_lines)
 
@@ -98,9 +99,14 @@ plot_region <- function(.polygonal.data,
     pp <- pp + do.call(ggplot2::scale_fill_manual, args = scale_fill_manual_args)
   }
 
+  if (title){
+    the_title <- cities_abbrev[[city]]
+    pp <- pp + ggplot2::ggtitle(the_title)
+  }
+
   list(
-    vwidth = 15 * xlength / lapply(aus_extent, diff)$xlim,
-    vheight = 15 * ylength / lapply(aus_extent, diff)$ylim,
+    vwidth = city_inset_scale * xlength / lapply(aus_extent, diff)$xlim,
+    vheight = city_inset_scale * ylength / lapply(aus_extent, diff)$ylim,
     p = pp)
 }
 

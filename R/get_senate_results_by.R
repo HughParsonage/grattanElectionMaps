@@ -47,7 +47,7 @@ get_senate_results_by <- function(year = c("2016", "2013", "2010", "2007", "2004
     }
 
     temp.file <- tempfile(fileext = ".zip")
-    temp.dir <- tempdir()
+    temp.dir <- paste0(tempdir(), state)
 
     if(httr::http_error(url))
       stop("Bad URL. This is a bug.")

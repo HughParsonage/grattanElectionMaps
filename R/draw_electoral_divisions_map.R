@@ -14,7 +14,7 @@ draw_electoral_divisions_map <- function(.polygonal.data,
                                          year = c("2016", "2013", "2010", "2007", "2004"),
                                          scale_fill_manual_args = NULL,
                                          polygon_outline_colour = "black",
-                                         city_inset_scale = 15,
+                                         city_inset_scale = 12,
                                          legend.title = NULL){
 
   stopifnot(all(c("lat", "long", "fill", "group") %in% names(.polygonal.data)))
@@ -45,9 +45,9 @@ draw_electoral_divisions_map <- function(.polygonal.data,
 
   print(entire, newpage = TRUE)
 
-  print_city_plot(.polygonal.data, "PER", xpos = 0.100, ypos = 0.450, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args)
-  print_city_plot(.polygonal.data, "ADL", xpos = 0.380, ypos = 0.325, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args)
-  print_city_plot(.polygonal.data, "MEL", xpos = 0.550, ypos = 0.100, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args)
-  print_city_plot(.polygonal.data, "SYD", xpos = 0.850, ypos = 0.200, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args)
-  print_city_plot(.polygonal.data, "BNE", xpos = 0.875, ypos = 0.750, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args)
+  print_city_plot(.polygonal.data, "PER", xpos = 0.100, ypos = 0.450, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args, city_inset_scale = city_inset_scale)
+  print_city_plot(.polygonal.data, "ADL", xpos = 0.380, ypos = 0.325, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args, city_inset_scale = city_inset_scale)
+  print_city_plot(.polygonal.data, "MEL", xpos = 0.525, ypos = 0.130, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args, city_inset_scale = city_inset_scale)
+  print_city_plot(.polygonal.data, "SYD", xpos = 0.845, ypos = 0.200, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args, city_inset_scale = city_inset_scale)
+  print_city_plot(.polygonal.data, "BNE", xpos = 0.875, ypos = 0.725, vfactor = 1, scale_fill_manual_args = scale_fill_manual_args, city_inset_scale = city_inset_scale)
 }
