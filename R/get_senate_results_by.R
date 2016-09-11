@@ -6,31 +6,38 @@
 #' @note Connects to AEC website.
 #' @export
 
-get_senate_results_by <- function(year = c("2016", "2013", "2010", "2007", "2004"), by = c("division", "polling_place"), state = c("NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT")){
+get_senate_results_by <- function(year = c("2016", "2013", "2010", "2007", "2004"),
+                                  by = c("division", "polling_place"),
+                                  state = c("NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT")){
   if (by == "division" && !missing(state)){
     warning("by = 'division' but for a specific state. The state will be ignored.")
   }
+
+  # Warnings occur because the file does not start in the expected place
+  # However, we expect these to be stable.
+  my_fread <- function(...) suppressWarnings({data.table::fread(...)})
 
   if (by == "division"){
     year <- match.arg(year)
 
     aec_code <- yearcd[year == year][["code"]]
 
+
     switch(year,
            "2016" = {
-             data.table::fread("http://vtr.aec.gov.au/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-20499.csv")
+             my_fread("http://vtr.aec.gov.au/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-20499.csv")
            },
            "2013" = {
-             data.table::fread("http://results.aec.gov.au/17496/website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-17496.csv")
+             my_fread("http://results.aec.gov.au/17496/website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-17496.csv")
            },
            "2010" = {
-             data.table::fread("http://results.aec.gov.au/15508/Website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-15508.csv")
+             my_fread("http://results.aec.gov.au/15508/Website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-15508.csv")
            },
            "2007" = {
-             data.table::fread("http://results.aec.gov.au/13745/Website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-13745.csv")
+             my_fread("http://results.aec.gov.au/13745/Website/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-13745.csv")
            },
            "2004" = {
-             data.table::fread("http://results.aec.gov.au/12246/results/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-12246.csv")
+             my_fread("http://results.aec.gov.au/12246/results/Downloads/SenateFirstPrefsByDivisionByVoteTypeDownload-12246.csv")
            })
   } else {
     if (year == "2016"){
@@ -40,7 +47,7 @@ get_senate_results_by <- function(year = c("2016", "2013", "2010", "2007", "2004
     }
 
     temp.file <- tempfile(fileext = ".zip")
-    temp.dir <- put.into
+    temp.dir <- tempdir()
 
     if(httr::http_error(url))
       stop("Bad URL. This is a bug.")
@@ -48,12 +55,12 @@ get_senate_results_by <- function(year = c("2016", "2013", "2010", "2007", "2004
     message("Fetching zip file from aec.gov.au ...", appendLF = FALSE)
     httr::GET(url = url, httr::write_disk(temp.file))
     message("unzipping ...")
-    unzip(zipfile = temp.file, exdir = temp.dir)
+    utils::unzip(zipfile = temp.file, exdir = temp.dir)
     csv.file <- list.files(path = temp.dir, pattern = "\\.csv$", full.names = TRUE)
     if (length(csv.file) != 1){
       stop("There does not exist a unique csv file in the target directory.")
     } else {
-      data.table::fread(csv.file)
+      my_fread(csv.file)
     }
 
 
