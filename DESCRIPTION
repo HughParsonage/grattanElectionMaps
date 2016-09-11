@@ -1,0 +1,21 @@
+Package: grattanElectionMaps
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: Create election maps and plots results.
+License: MIT + file LICENSE
+Depends: R (>= 3.3.0)
+Imports:
+    data.table,
+    httr,
+    sp,
+    rgdal,
+    ggplot2,
+    ggthemes,
+    magrittr,
+    dplyr,
+    utils
+LazyData: TRUE
+RoxygenNote: 5.0.1
