@@ -1,5 +1,13 @@
-
-
+#' Draw an electoral map, with insets.
+#'
+#' @param .polygonal.data Data including the vertices of all polygons, including a \code{fill} variable to colour the polygons.
+#' @param year What elections' boundaries should be used?
+#' @param scale_fill_manual_args A list of arguments to pass to \code{scale_fill_manual}.
+#' @param city_inset_scale By how much should the cities' insets be scaled by relative to the Australia plot?
+#' @param legend.title What should the legend title (for \code{fill}) be?
+#' @return A printed ggplot object.
+#' @export
+#'
 
 draw_electoral_divisions_map <- function(.polygonal.data,
                                          year = c("2016", "2013", "2010", "2007", "2004"),
@@ -34,10 +42,11 @@ draw_electoral_divisions_map <- function(.polygonal.data,
                                     legend.justification = c(0, 1),
                                     legend.margin = grid::unit(0, "lines"))
 
-  cities_coords <-
-    list(MEL = c(143.8, 146.0, -38.5, -37.00),
-         SYD = c(150.05, 151.5, -34.5, -33.2),
-         PER = c(115.3, 116.4, -32.3, -31.5),
-         ADL = c(137.6, 139.25, -35.6, -34.28),
-         BNE = c(152.4, 153.7, -28.2, -26.047))
+  print(entire, newpage = TRUE)
+
+  print_city_plot("PER", xpos = 0.10, ypos = 0.45, vfactor = 1)
+  print_city_plot("ADL", xpos = 0.38, ypos = 0.325, vfactor = 1)
+  print_city_plot("MEL", xpos = 0.55, ypos = 0.10, vfactor = 1)
+  print_city_plot("SYD", xpos = 0.85, ypos = 0.20, vfactor = 1)
+  print_city_plot("BNE", xpos = 0.875, ypos = 0.75, vfactor = 1)
 }

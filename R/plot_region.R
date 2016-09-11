@@ -7,7 +7,8 @@
 #' @return A list of three elements, \code{vwidth} the width of the inset on the device, \code{vheight} the height of the inset on the device, and \code{p} the plot.
 #' @note This function should not be called directly. It is intended to be used to plot insets on a map generated through \code{\link{draw_electoral_divisions_map}}.
 
-plot_region <- function(city, coord_lines = c("none", "latlon", "lat", "lon"), inset_scale = 15){
+plot_region <- function(city = c("PER", "ADL", "MEL", "SYD", "BNE"), coord_lines = c("none", "latlon", "lat", "lon"), inset_scale = 15){
+  city <- match.arg(city)
   coord_lines <- match.arg(coord_lines)
 
   xlim1 <- cities_coords[[city]][1]
@@ -86,3 +87,5 @@ plot_region <- function(city, coord_lines = c("none", "latlon", "lat", "lon"), i
     vheight = 15 * ylength / lapply(entire_extent, diff)$ylim,
     p = pp)
 }
+
+
