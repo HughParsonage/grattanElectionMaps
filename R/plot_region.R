@@ -6,6 +6,7 @@
 #' @param scale_fill_manual_args A list of arguments to pass to \code{scale_fill_manual}.
 #' @param polygon_outline_colour The outline of polygons.
 #' @param city_inset_scale Scale relative to Australia.
+#' @param title (logical) Should a standard \code{ggtitle} be added to each city?
 #' @importFrom magrittr %>%
 #' @import data.table
 #' @return A list of three elements, \code{vwidth} the width of the inset on the device, \code{vheight} the height of the inset on the device, and \code{p} the plot.

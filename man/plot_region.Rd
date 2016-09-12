@@ -21,6 +21,8 @@ plot_region(.polygonal.data, city = c("PER", "ADL", "MEL", "SYD", "BNE"),
 \item{polygon_outline_colour}{The outline of polygons.}
 
 \item{city_inset_scale}{Scale relative to Australia.}
+
+\item{title}{(logical) Should a standard \code{ggtitle} be added to each city?}
 }
 \value{
 A list of three elements, \code{vwidth} the width of the inset on the device, \code{vheight} the height of the inset on the device, and \code{p} the plot.
