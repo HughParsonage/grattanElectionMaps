@@ -25,4 +25,3 @@ Print inset of city
 \note{
 This function must not be called directly.
 }
-

@@ -1,8 +1,9 @@
 Package: grattanElectionMaps
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
+Version: 0.2.0
+Author: Hugh Parsonage
+Date: 2018-10-20
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: Create election maps and plots results.
 License: MIT + file LICENSE
@@ -16,5 +17,10 @@ Imports:
     dplyr,
     dtplyr,
     utils
+Suggests:
+  grattanCharts,
+  hutils,
+  scales
 LazyData: TRUE
-RoxygenNote: 5.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.0

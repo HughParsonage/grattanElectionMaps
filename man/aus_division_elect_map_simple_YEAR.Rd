@@ -2,12 +2,12 @@
 % Please edit documentation in R/data.R
 \docType{data}
 \name{aus_division_elect_map_simple_YEAR}
+\alias{aus_division_elect_map_simple_YEAR}
 \alias{aus_division_elect_map_simple_2004}
 \alias{aus_division_elect_map_simple_2007}
 \alias{aus_division_elect_map_simple_2010}
 \alias{aus_division_elect_map_simple_2013}
 \alias{aus_division_elect_map_simple_2016}
-\alias{aus_division_elect_map_simple_YEAR}
 \title{Electoral map shapefiles}
 \format{A \code{data.table} of vertices of the polygons definining the division boundaries (approximately).
 \describe{
@@ -38,4 +38,3 @@ aus_division_elect_map_simple_2016
 Simplified and swept shapefiles.
 }
 \keyword{datasets}
-

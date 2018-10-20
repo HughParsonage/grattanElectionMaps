@@ -5,8 +5,8 @@
 \title{Obtain senate results}
 \usage{
 get_senate_results_by(year = c("2016", "2013", "2010", "2007", "2004"),
-  by = c("division", "polling_place"), state = c("NSW", "VIC", "QLD", "SA",
-  "WA", "TAS", "ACT", "NT"))
+  by = c("division", "polling_place"), state = c("NSW", "VIC", "QLD",
+  "SA", "WA", "TAS", "ACT", "NT"))
 }
 \arguments{
 \item{year}{The year of the election for which results are desired.}
@@ -24,4 +24,3 @@ Obtain senate results
 \note{
 Connects to AEC website.
 }
-

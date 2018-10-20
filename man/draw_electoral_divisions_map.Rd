@@ -4,10 +4,11 @@
 \alias{draw_electoral_divisions_map}
 \title{Draw an electoral map, with insets.}
 \usage{
-draw_electoral_divisions_map(.polygonal.data, year = c("2016", "2013", "2010",
-  "2007", "2004"), scale_fill_manual_args = NULL,
-  polygon_outline_colour = "black", city_inset_scale = 12,
-  legend.title = NULL)
+draw_electoral_divisions_map(.polygonal.data, year = c("2016", "2013",
+  "2010", "2007", "2004"), scale_fill_manual_args = NULL,
+  scale_fill_gradientn_args = NULL, polygon_outline_colour = "black",
+  city_inset_scale = 13, base_size = 25, base_family = "",
+  city_inset_text_size = 25, legend.title = NULL)
 }
 \arguments{
 \item{.polygonal.data}{Data including the vertices of all polygons, including a \code{fill} variable to colour the polygons.}
@@ -16,9 +17,15 @@ draw_electoral_divisions_map(.polygonal.data, year = c("2016", "2013", "2010",
 
 \item{scale_fill_manual_args}{A list of arguments to pass to \code{scale_fill_manual}.}
 
+\item{scale_fill_gradientn_args}{A list of arguments to pass to \code{scale_fill_gradientn}.}
+
 \item{polygon_outline_colour}{The outline of polygons.}
 
 \item{city_inset_scale}{By how much should the cities' insets be scaled by relative to the Australia plot?}
+
+\item{base_size, base_family}{Passed to \code{theme_map}.}
+
+\item{city_inset_text_size}{Title size in points.}
 
 \item{legend.title}{What should the legend title (for \code{fill}) be?}
 }
@@ -28,4 +35,31 @@ A printed ggplot object.
 \description{
 Draw an electoral map, with insets.
 }
+\examples{
+library(grattanCharts)
+library(hutils)
+library(ggplot2)
+library(scales)
+library(data.table)
+library(magrittr)
+system.file(package = "grattanElectionMaps",
+           "examples/wellbeing.csv") \%>\%
+ fread \%>\%
+ .[, ELECT_DIV := toupper(gsub("[^A-Za-z]", "", Electorate))] \%>\%
+ .[aus_division_elect_map_simple_2016, on = "ELECT_DIV"] \%T>\%
+ .[, stopifnot(!anyNA(SE), uniqueN(Rank) == 150L)] \%>\%
+ setnames("Personal wellbeing index", "fill") \%>\%
+ draw_electoral_divisions_map(
+   scale_fill_gradientn_args = list(colors = gpal(7)),
+   legend.title = "Well-being",
+   city_inset_scale = c("PER" = 26,
+                        "ADL" = 24,
+                        "MEL" = 18,
+                        "SYD" = 14,
+                        "BNE" = 14),
+   city_inset_text_size = 18, 
+   base_size = 20)
 
+
+
+}

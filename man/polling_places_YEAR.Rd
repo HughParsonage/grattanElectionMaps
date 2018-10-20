@@ -2,12 +2,12 @@
 % Please edit documentation in R/data-polling_places_2016.R
 \docType{data}
 \name{polling_places_YEAR}
-\alias{polling_places_2004}
-\alias{polling_places_2007}
-\alias{polling_places_2010}
-\alias{polling_places_2013}
-\alias{polling_places_2016}
 \alias{polling_places_YEAR}
+\alias{polling_places_2016}
+\alias{polling_places_2013}
+\alias{polling_places_2010}
+\alias{polling_places_2007}
+\alias{polling_places_2004}
 \title{Polling place information for 2004 to 2016}
 \format{An object of class \code{data.table} (inherits from \code{data.frame}) with 8328 rows and 15 columns.}
 \source{
@@ -28,4 +28,3 @@ polling_places_2004
 Polling place information for 2004 to 2016
 }
 \keyword{datasets}
-

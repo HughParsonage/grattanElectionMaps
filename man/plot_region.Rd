@@ -6,8 +6,9 @@
 \usage{
 plot_region(.polygonal.data, city = c("PER", "ADL", "MEL", "SYD", "BNE"),
   coord_lines = c("none", "latlon", "lat", "lon"),
-  scale_fill_manual_args = NULL, polygon_outline_colour = "black",
-  city_inset_scale = 15, title = TRUE)
+  scale_fill_manual_args = NULL, scale_fill_gradientn_args = NULL,
+  polygon_outline_colour = "black", city_inset_scale = 15,
+  title = TRUE, base_size = 25, base_family = "", title.size = 25)
 }
 \arguments{
 \item{.polygonal.data}{Polygonal data (of Australia). See \link{draw_electoral_divisions_map}.}
@@ -16,13 +17,18 @@ plot_region(.polygonal.data, city = c("PER", "ADL", "MEL", "SYD", "BNE"),
 
 \item{coord_lines}{Plot grid lines at 0.1 intervals.}
 
-\item{scale_fill_manual_args}{A list of arguments to pass to \code{scale_fill_manual}.}
+\item{scale_fill_manual_args, scale_fill_gradientn_args}{A \code{list} of arguments
+to pass to \code{scale_fill_manual} or \code{scale_fill_gradientn}.}
 
 \item{polygon_outline_colour}{The outline of polygons.}
 
 \item{city_inset_scale}{Scale relative to Australia.}
 
 \item{title}{(logical) Should a standard \code{ggtitle} be added to each city?}
+
+\item{base_size, base_family}{Passed to \code{theme_map}.}
+
+\item{title.size}{The base size of the plot, in points.}
 }
 \value{
 A list of three elements, \code{vwidth} the width of the inset on the device, \code{vheight} the height of the inset on the device, and \code{p} the plot.
@@ -33,4 +39,3 @@ Plot region of Australia
 \note{
 This function should not be called directly. It is intended to be used to plot insets on a map generated through \code{\link{draw_electoral_divisions_map}}.
 }
-
