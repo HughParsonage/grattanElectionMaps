@@ -4,6 +4,7 @@ warnings_are_errors: true
 
 r_github_packages:
   - jimhester/covr
+  - hughparsonage/grattanCharts
 
 after_success:
   - Rscript -e 'covr::codecov()'
